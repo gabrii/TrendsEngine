@@ -6,5 +6,5 @@ python:
 install: pip install -r requirements.txt
 
 script:
- - pylint engine --rcfile pylint.rc
- - cd engine/ && pytest -vsl 
+ - pylint engine --rcfile pylint.rc || true
+ - cd engine/ && pytest -vsl --cov="."
