@@ -3,8 +3,10 @@ language: python
 python:
  - "3.6"
 
-install: pip install -r requirements.txt
+install: pip install -r engine/requirements.txt
 
 script:
- - pylint engine --rcfile pylint.rc || true
  - cd engine/ && pytest -vsl --cov="."
+ - pylint engine --rcfile pylint.rc || true
+after_success:
+ - codecov
