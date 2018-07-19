@@ -13,11 +13,11 @@ def i():
     return i
 
 
-@pytest.mark.parametrize("text, final_state", [
-    ("hello", Counter(hello=1)),
-    ("hello world", Counter(hello=1, hello_world=1, world=1)),
-    ("hello world foo", Counter(hello=1, hello_world=1, world=1, world_foo=1, foo=1)),
+@pytest.mark.parametrize("text, expected_counter", [
+    ("A", Counter(A=1)),
+    ("A B", Counter(A=1, A_B=1, B=1)),
+    ("A B C", Counter(A=1, A_B=1, B=1, B_C=1, C=1)),
 ])
-def test_word_combinations(text, final_state: Counter, i: Index):
+def test_word_combinations(text, expected_counter: Counter, i: Index):
     i.index_text(text)
-    assert i.backend.counter == final_state
+    assert i.backend.counter == expected_counter
