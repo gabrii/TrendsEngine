@@ -2,10 +2,10 @@ from datetime import datetime
 
 import pytest
 
-from date_tools import from_timestamp, isocalendar
+from date_tools import from_timestamp, isocalendar, date_suffix
 
 
-@pytest.fixture()
+@pytest.fixture(scope="module")
 def epoch():
     return datetime(1970, 1, 1, 0, 0)  # Unix Epoch
 
@@ -22,6 +22,10 @@ def test_week_isocalendar(epoch):
 
 def test_right_now():
     now = datetime.utcnow()
-    w = isocalendar(from_timestamp(now.timestamp()))
+    w = isocalendar(from_timestamp(int(now.timestamp())))
 
     assert w == now.isocalendar()
+
+
+def test_date_suffix(epoch):
+    assert "1970:1" == date_suffix(epoch)

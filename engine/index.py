@@ -1,4 +1,7 @@
+from typing import Optional
+
 from backends import AbstractBackend
+from date_tools import date_suffix, date
 
 
 class Index:
@@ -13,10 +16,13 @@ class Index:
     def simple_tokenizer(text: str) -> [str]:
         return text.split()
 
-    def index_text(self, text: str, date=None):
+    def index_text(self, text: str, date: Optional[date] = None):
         words = self.tokenizer(text)
+        suffix = ":"
+        if date:
+            suffix += date_suffix(date)
 
         for i in range(len(words)):
             for j in range(2):
                 if i + j < len(words):
-                    self.backend.incr('_'.join(words[i:1 + i + j]))
+                    self.backend.incr('_'.join(words[i:1 + i + j]) + suffix)
