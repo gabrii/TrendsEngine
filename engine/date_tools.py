@@ -8,15 +8,12 @@ def from_timestamp(timestamp: int) -> date:
 
 def isocalendar(_date: date) -> (int, int):
     """Wraper for isocaReturns a tuple with (year, week).
-       The week is from ISO-8601 Calendar, not gregorian calendar weeks. This way each week has the same number of days."""
+       The week is from ISO-8601 Calendar, not gregorian calendar weeks.
+       This way each week has the same number of days.
+       """
     year, week, day = _date.isocalendar()
     return year, week, day
 
 
 def date_suffix(_date: date) -> str:
     return "{}:{}".format(*_date.isocalendar())
-
-
-def epoch() -> date:
-    """Returns the epoch date, for testing pourposes."""
-    return datetime.utcfromtimestamp(0)

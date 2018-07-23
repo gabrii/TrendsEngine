@@ -7,6 +7,5 @@ install: pip install -r engine/requirements.txt
 
 script:
  - cd engine/ && pytest -vsl --cov="."
- - pylint engine --rcfile pylint.rc || true
-after_success:
+ - pylint engine --rcfile pylint.rc
  - codecov

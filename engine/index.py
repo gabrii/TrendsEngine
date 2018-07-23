@@ -16,11 +16,11 @@ class Index:
     def simple_tokenizer(text: str) -> [str]:
         return text.split()
 
-    def index_text(self, text: str, date: Optional[date] = None):
+    def index_text(self, text: str, _date: Optional[date] = None):
         words = self.tokenizer(text)
         suffix = ":"
-        if date:
-            suffix += date_suffix(date)
+        if _date:
+            suffix += date_suffix(_date)
 
         for i in range(len(words)):
             for j in range(2):

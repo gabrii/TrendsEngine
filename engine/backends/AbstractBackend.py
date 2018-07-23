@@ -21,7 +21,8 @@ class AbstractBackend(abc.ABC):
 
     @abc.abstractmethod
     def get(self, key: str) -> int:
-        """Return the count for a given key. If the key doesn't exist, returns 0 rather than None."""
+        """Return the count for a given key.
+            If the key doesn't exist, returns 0 rather than None."""
         pass
 
     def get_many(self, keys: Iterable[str]) -> Dict[str, int]:
